@@ -3,33 +3,35 @@ package Componenti;
 import Giocatore.Giocatore;
 import SupportClass.Posizione;
 
+import java.util.LinkedList;
+
 public abstract class AbstractComponent implements StateComponent {
-    private Giocatore giocatore; //se è diverso da null indica che sullo specifico componente è presente un giocatore
+    private LinkedList<Giocatore> giocatoriSuCella; //indica l'insieme di giocatori che sono presenti su una particolare cella
     private Posizione posizione;
 
     public AbstractComponent(Posizione p){
         this.posizione = p;
-        this.giocatore = null;
+        this.giocatoriSuCella = new LinkedList<>();
     }
 
     @Override
     public void setGiocatoreSuCella(Giocatore g) {
-        giocatore = g;
+        giocatoriSuCella.add(g.clone());
     }
 
     @Override
-    public Giocatore getGiocatore(){
-        return giocatore  ;
+    public LinkedList<Giocatore> getGiocatoriSuCella(){
+        return giocatoriSuCella  ;
     }
 
     @Override
-    public void removeGiocatoreDaCella() {
-        giocatore = null;
+    public void removeGiocatoreDaCella(Giocatore giocatore) {
+        giocatoriSuCella.remove(giocatore);
     }
 
     @Override
     public void azione(Giocatore g) {
-        g.setPosizione(this.getPosizione());
+        g.setPosizione(this.posizione);
         this.setGiocatoreSuCella(g);
     }
 

@@ -13,6 +13,9 @@ public class ScalaInizio extends AbstractComponent{
 
     @Override
     public void azione(Giocatore g) {
+        System.out.println("Il giocatore è caduto nella cella " + this.getPosizione());
+        System.out.println("Il giocatore sarà rimandato nella cella " + scalaFine.getPosizione());
+
         scalaFine.azione(g);
         //g.setPosizione(scalaFine.getPosizione());
         //scalaFine.setGiocatoreSuCella();
@@ -21,8 +24,13 @@ public class ScalaInizio extends AbstractComponent{
 
     @Override
     public void stampa() {
-        if(getGiocatore() != null)
-            System.out.print(String.format("[ Sc[%d]In ]", getGiocatore().getID()));
-        System.out.print("[  ScaIn  ]");
+        if(! this.getGiocatoriSuCella().isEmpty())
+            System.out.print(String.format("[ Sc[%d]In ]", getGiocatoriSuCella().size()));
+        else System.out.print("[  ScaIn  ]");
+    }
+
+    @Override
+    public String toString() {
+        return "Componente 'ScalaInizio' in posizione " + getPosizione();
     }
 }

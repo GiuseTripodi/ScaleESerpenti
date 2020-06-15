@@ -25,4 +25,14 @@ public interface Gioco {
 
 
     }
+
+    public int getNumeroCelleTabellone();
+
+    public int getNumeroColonneTabellone();
+
+    public int getNumeroRigheTabellone();
+
+
+
+
 }

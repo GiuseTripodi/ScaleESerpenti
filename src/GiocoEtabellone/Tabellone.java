@@ -8,6 +8,7 @@ public interface Tabellone {
 
     /**
      * metodo invocato per aggiungere un particolare stato al componente
+     *
      * @param component
      * @return
      */
@@ -16,6 +17,7 @@ public interface Tabellone {
 
     /**
      * Il metodo restituisce il componente associato ad una particolare posizione
+     *
      * @param indiceRiga
      * @param indiceColonna
      * @return
@@ -24,4 +26,9 @@ public interface Tabellone {
 
 
     public int getNumeroCelle();
+
+    public int getNumRighe();
+
+    public int getNumColonne();
+
 }

@@ -2,6 +2,7 @@ package GiocoEtabellone;
 
 import Componenti.Premio;
 import Giocatore.Giocatore;
+import SupportClass.Posizione;
 
 public  abstract class AbstractGioco implements Gioco {
     protected Tabellone tabellone;
@@ -20,7 +21,7 @@ public  abstract class AbstractGioco implements Gioco {
      * @param giocatore
      */
     protected void rimuoviDaUltimaCella(Giocatore giocatore){
-        tabellone.getCella(giocatore.getPosizione().getIndiceRiga(),giocatore.getPosizione().getIndiceColonna()).removeGiocatoreDaCella();
+        tabellone.getCella(giocatore.getPosizione().getIndiceRiga(),giocatore.getPosizione().getIndiceColonna()).removeGiocatoreDaCella(giocatore);
     }
 
     /**
@@ -30,7 +31,12 @@ public  abstract class AbstractGioco implements Gioco {
      * @param esitoLancio
      */
     protected void muovi(Giocatore giocatore,int esitoLancio){
-        giocatore.getPosizione().posDopoLancio(esitoLancio);
+
+        Posizione posGiocatore = giocatore.getPosizione();
+        Posizione posDopoLancio = posGiocatore.posDopoLancio(esitoLancio);
+        giocatore.setPosizione(posDopoLancio);
+
+        //giocatore.getPosizione().posDopoLancio(esitoLancio);
         tabellone.getCella(giocatore.getPosizione().getIndiceRiga(),giocatore.getPosizione().getIndiceColonna()).gestisciComponente(giocatore);
 
     }
@@ -45,9 +51,26 @@ public  abstract class AbstractGioco implements Gioco {
     protected void verificaPremio(Giocatore giocatore, int esitoLancio){
         if(giocatore.getPremio() != null){
             Premio premio = giocatore.getPremio();
+            giocatore.consumaPremio();
             if(premio.getTipoPremio() == Premio.TipoPremio.DADI) mossa(giocatore);
-            if(premio.getTipoPremio() == Premio.TipoPremio.MOLLA) muovi(giocatore, esitoLancio);
+            if(premio.getTipoPremio() == Premio.TipoPremio.MOLLA) {
+                rimuoviDaUltimaCella(giocatore);
+                muovi(giocatore, esitoLancio);
+            }
         }
+    }
+
+    public int getNumeroCelleTabellone(){
+        return tabellone.getNumeroCelle();
+    }
+
+    public int getNumeroRigheTabellone(){
+        return tabellone.getNumRighe();
+    }
+
+    public int getNumeroColonneTabellone(){
+
+        return tabellone.getNumColonne();
     }
 
 }

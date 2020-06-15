@@ -21,7 +21,7 @@ public class PescaUnaCarta extends AbstractComponent {
         this.numeroCarteMazzo = numeroDiCarteNelMazzo;
         mazzo = new LinkedList<>();
         r = new Random();
-        posizioneFittizia = new Posizione(0,0,0); //posizione nulla di default
+        posizioneFittizia = posizione.clone();
         //Riempio il mazzo, non casualmente
         for(int i = 0; i< numeroDiCarteNelMazzo; i++){
             Float random = r.nextFloat();
@@ -37,6 +37,7 @@ public class PescaUnaCarta extends AbstractComponent {
         super.azione(g);
         //Pesca una carta
          AbstractComponent cartaPescata = mazzo.getFirst(); // pesco la prima carta del mazzo
+         System.out.printf("Il giocatore %d ha pescato una carta di tipo " + cartaPescata.toString() + "\n", g.getID());
          cartaPescata.azione(g);
          mazzo.addLast(cartaPescata); //aggiungo la carta infondo al mazzo
     }
@@ -59,8 +60,13 @@ public class PescaUnaCarta extends AbstractComponent {
 
     @Override
     public void stampa() {
-        if(this.getGiocatore() != null)
-            System.out.print(String.format("[ Pe[%d]Ca ]", this.getGiocatore().getID()));
-        System.out.print("[  PesCa  ]");
+        if(! this.getGiocatoriSuCella().isEmpty())
+            System.out.print(String.format("[ Pe[%d]Ca ]", this.getGiocatoriSuCella().size()));
+        else System.out.print("[  PesCa  ]");
+    }
+
+    @Override
+    public String toString() {
+        return "Componente 'Pesca una carta' in posizione " + getPosizione();
     }
 }

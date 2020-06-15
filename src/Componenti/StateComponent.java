@@ -3,6 +3,8 @@ package Componenti;
 import Giocatore.Giocatore;
 import SupportClass.Posizione;
 
+import java.util.LinkedList;
+
 /**
  * L'interfaccia definisce la struttura base dei componenti, con le funzioni che dovono implementare
  */
@@ -23,9 +25,9 @@ public interface StateComponent {
     /**
      * Rimuove il giocatore dalla cella
      */
-    public void removeGiocatoreDaCella();
+    public void removeGiocatoreDaCella(Giocatore giocatore);
 
-    public Giocatore getGiocatore();
+    public LinkedList<Giocatore> getGiocatoriSuCella();
 
     /**
      * Il metodo stampa in un particolare modo uno specifico componente è

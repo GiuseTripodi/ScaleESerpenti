@@ -23,6 +23,7 @@ public class Sosta extends AbstractComponent {
         //verifico se il giocatore ha memorizzato al suo interno una carta divieto di sosta
         if(! g.getCartaDivietoDiSosta()){
             g.setTurniStop(turniStop);
+            System.out.printf("Il giocatore %d ha ricevuto %d turni di stop", g.getID(), turniStop);
         }
         //consumo la carta divieto di sosta
         g.consumaCartaDivietoDiSosta();
@@ -31,8 +32,13 @@ public class Sosta extends AbstractComponent {
 
     @Override
     public void stampa() {
-        if(getGiocatore() != null)
-            System.out.print(String.format("[ So[%d]ta ]", getGiocatore().getID()));
-        System.out.print("[  Sosta  ]");
+        if(! this.getGiocatoriSuCella().isEmpty())
+            System.out.print(String.format("[ So[%d]ta ]", getGiocatoriSuCella().size()));
+        else System.out.print("[  Sosta  ]");
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Componente 'Sosta di tipo %s' in posizione " + getPosizione(),tipoSosta.toString());
     }
 }

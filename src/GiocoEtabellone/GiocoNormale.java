@@ -27,6 +27,7 @@ public class GiocoNormale extends AbstractGioco {
         rimuoviDaUltimaCella(giocatore);
         //faccio la mossa
         int risLancio = this.lancio(numDadi);
+        System.out.println("Il risultato del lancio è " + risLancio);
         muovi(giocatore, risLancio);
         //verifico se il giocatore ha ottenuto un particolare premio
         verificaPremio(giocatore, risLancio);

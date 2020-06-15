@@ -17,10 +17,14 @@ public class GiocoUnSoloDadoFinale extends AbstractGioco {
         int numeroCelleTabellone = tabellone.getNumeroCelle();
         int cellaGiocatore = giocatore.getPosizione().getNumeroCella();
         int esitoLancio = 0;
-        if(cellaGiocatore > numeroCelleTabellone - 7 && cellaGiocatore < numeroCelleTabellone -1)
+        if(cellaGiocatore > numeroCelleTabellone - 7 && cellaGiocatore < numeroCelleTabellone - 1 ) {
             esitoLancio = lancio(numDadiUltimeCelle);
-        else
+            System.out.println("lancio ultime celle "+ esitoLancio);
+        }
+        else {
             esitoLancio = lancio(numDadiStandard);
+            System.out.println("lancio standard "+ esitoLancio);
+        }
         muovi(giocatore, esitoLancio);
         verificaPremio(giocatore, esitoLancio);
 

@@ -19,8 +19,13 @@ public class SerpenteFine extends AbstractComponent {
 
     @Override
     public void stampa() {
-        if(getGiocatore() != null)
-            System.out.print(String.format("[ Se[%d]Fi ]", getGiocatore().getID()));
-        System.out.print("[  SerFi  ]");
+        if(! this.getGiocatoriSuCella().isEmpty())
+            System.out.print(String.format("[ Se[%d]Fi ]", getGiocatoriSuCella().size()));
+        else System.out.print("[  SerFi  ]");
+    }
+
+    @Override
+    public String toString() {
+        return "Componente 'SerpenteFine' in posizione " + getPosizione();
     }
 }

@@ -6,7 +6,7 @@ import java.util.Objects;
  * Questa classe implementa il concetto di posizione all'interno del tabellone, usata esclusivamente per semplicità
  * implementativa e per aiutare in alcune funzioni.
  */
-public class Posizione {
+public class Posizione implements Cloneable{
     private int indiceRiga; //indice di riga
     private int indiceColonna; //indice di colonne
     private int numeroCella; //indica l'avenzamento rispetto alla prima cella del tabellone. E' numerato da 0 ad N-1(
@@ -14,6 +14,15 @@ public class Posizione {
     private int numeroRigheTabellone;
     private int numeroColonneTabellone;
     private int numeroCelleTabellone;
+
+    public Posizione(int numeroCella, int numeroRigheTabellone, int numeroColonneTabellone, int numeroCelleTabellone){
+        this.numeroCella = numeroCella;
+        this.numeroRigheTabellone = numeroRigheTabellone;
+        this.numeroCelleTabellone = numeroCelleTabellone;
+        this.numeroColonneTabellone = numeroColonneTabellone;
+        this.indiceColonna = numeroCella % (numeroColonneTabellone);
+        this.indiceRiga = numeroCella / (numeroColonneTabellone);
+    }
 
     public Posizione(){
 
@@ -118,11 +127,56 @@ public class Posizione {
      * @param esitoLancio
      * @return una nuova Posizione ottenuta dopo il lancio
      */
+
+    /*
     public void posDopoLancio(int esitoLancio) {
-        numeroCella = numeroCella + esitoLancio;
-        if (numeroCella > numeroCelleTabellone) {
-            numeroCella = numeroCelleTabellone - (numeroCella % numeroCelleTabellone);
+        int nCella = this.numeroCella += esitoLancio;
+
+        if (nCella > this.numeroCelleTabellone) {
+            this.numeroCella = this.numeroCelleTabellone - (nCella % this.numeroCelleTabellone);
         }
-        this.setNumeroCella(numeroCella);
+        this.setNumeroCella(nCella);
+
     }
+
+     */
+
+
+    public Posizione posDopoLancio(int esitoLancio) {
+        Posizione ret = this.clone();
+        int nCella = this.numeroCella + esitoLancio;
+        if (nCella > this.numeroCelleTabellone -1) {
+            nCella = (this.numeroCelleTabellone-1) - (nCella % (this.numeroCelleTabellone-1));
+        }
+        ret.setNumeroCella(nCella);
+        return ret;
+    }
+
+
+
+
+    public int getNumeroRigheTabellone() {
+        return numeroRigheTabellone;
+    }
+
+    public int getNumeroColonneTabellone() {
+        return numeroColonneTabellone;
+    }
+
+    public int getNumeroCelleTabellone() {
+        return numeroCelleTabellone;
+    }
+
+    public Posizione clone(){
+        try {
+            Posizione ret = (Posizione)super.clone();
+            return ret;
+        }catch (CloneNotSupportedException e){
+            throw new Error(e);
+        }
+    }
+
+
+
+
 }

@@ -28,18 +28,26 @@ public class ConcreteTabellone implements Tabellone {
         int numCella = 0;
         for(int i = 0; i < numRighe; i++){
             for(int j = 0; j < numColonne; j++){
-                mappa[i][j] = new ContextState(new Posizione(i,j,numCella));
+                Posizione p = new Posizione(i,j,numCella);
+                p.setInformazioniTabellone(numRighe,numColonne,numeroCelle);
+                mappa[i][j] = new ContextState(p);
                 numCella++;
             }
         }
     }
 
 
-    //@Override
+    /**
+     * Dato un componente il metodo lo aggiunge allo specifico tabbellone
+     * @param component, componente da aggiunger
+     * @return true se si è riusciti ad aggiungere il componente
+     */
+    @Override
     public boolean add(StateComponent component) {
         int iR = component.getPosizione().getIndiceRiga();
         int iC = component.getPosizione().getIndiceColonna();
-        return mappa[iR][iC].setState(component);
+        boolean ret = mappa[iR][iC].setState(component);
+        return ret;
     }
 
     @Override
@@ -62,5 +70,15 @@ public class ConcreteTabellone implements Tabellone {
     @Override
     public int getNumeroCelle() {
         return numeroCelle;
+    }
+
+    @Override
+    public int getNumRighe() {
+        return numRighe;
+    }
+
+    @Override
+    public int getNumColonne() {
+        return numColonne;
     }
 }

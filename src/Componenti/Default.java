@@ -11,14 +11,19 @@ public class Default extends AbstractComponent {
 
     @Override
     public void azione(Giocatore g) {
-        g.setPosizione(this.getPosizione());
-        this.setGiocatoreSuCella(g);
+        super.azione(g);
     }
 
     @Override
     public void stampa() {
-        if(this.getGiocatore() != null)
-            System.out.print(String.format("[ Vu[%d]ta ]", this.getGiocatore().getID()));
-        System.out.print("[  Vuota  ]");
+        if(! this.getGiocatoriSuCella().isEmpty())
+            System.out.print(String.format("[ Vu[%d]ta ]", this.getGiocatoriSuCella().size()));
+        else
+            System.out.print("[  Vuota  ]");
+    }
+
+    @Override
+    public String toString() {
+        return "Componente 'Defoult' in posizione " + getPosizione();
     }
 }

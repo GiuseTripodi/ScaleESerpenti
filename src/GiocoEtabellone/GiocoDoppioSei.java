@@ -13,8 +13,10 @@ public class GiocoDoppioSei extends  AbstractGioco{
     public void mossa(Giocatore giocatore) {
         rimuoviDaUltimaCella(giocatore);
         int esitoLancio = lancio(numDadi);
+        System.out.println("Il risultato del lancio è : "+ esitoLancio);
         muovi(giocatore, esitoLancio);
         if(esitoLancio == 12){
+            rimuoviDaUltimaCella(giocatore);
             esitoLancio = lancio(numDadi);
             muovi(giocatore, esitoLancio);
         }
