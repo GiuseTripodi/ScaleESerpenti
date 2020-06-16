@@ -2,6 +2,7 @@ package GiocoEtabellone;
 
 import Componenti.AbstractComponent;
 import Componenti.ContextState;
+import Componenti.Default;
 import Componenti.StateComponent;
 import SupportClass.Posizione;
 
@@ -19,7 +20,7 @@ public class ConcreteTabellone implements Tabellone {
 
     }
 
-    public ConcreteTabellone(int numeroCelle,int numRighe, int numColonne ){
+    public ConcreteTabellone(int numRighe, int numColonne,int numeroCelle){
         this.numeroCelle = numeroCelle;
         this.numRighe = numRighe;
         this.numColonne = numColonne;
@@ -46,8 +47,26 @@ public class ConcreteTabellone implements Tabellone {
     public boolean add(StateComponent component) {
         int iR = component.getPosizione().getIndiceRiga();
         int iC = component.getPosizione().getIndiceColonna();
+        /*
+        verifico che il componente da aggiungere non venga aggiunto nell'ultima cella
+        pechè cià per particolari componenti può portare il gioco a non terminare ed a entrare
+        in loop
+
+        */
+        if(iR == this.numRighe-1 && iC == this.numColonne -1)
+            return false;
         boolean ret = mappa[iR][iC].setState(component);
         return ret;
+    }
+
+    @Override
+    public void remove(StateComponent component) {
+        int iR = component.getPosizione().getIndiceRiga();
+        int iC = component.getPosizione().getIndiceColonna();
+        Posizione posizione = component.getPosizione();
+        Default def = new Default(posizione);
+        mappa[iR][iC].removeState(def);
+
     }
 
     @Override

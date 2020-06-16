@@ -12,7 +12,7 @@ public class TestGiochi2 {
         int numeroColonne = 6;
         int numCelle = 48;
 
-        ConcreteTabellone tabellone = new ConcreteTabellone(numCelle, numeroRighe, numeroColonne);
+        ConcreteTabellone tabellone = new ConcreteTabellone(numeroRighe, numeroColonne,numCelle);
         //test su serpenti e scale(superato)
         Posizione pSerpenteInizio = new Posizione(1, numeroRighe, numeroColonne, numCelle);
         SerpenteInizio serpenteInizio = new SerpenteInizio(pSerpenteInizio);

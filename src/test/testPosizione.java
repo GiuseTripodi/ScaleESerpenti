@@ -17,7 +17,7 @@ public class testPosizione {
         p.setNumeroCella(18);System.out.println(p);
         System.out.println("-----------------------");
         Posizione p2 = p.copy();
-        p2.setNumeroCella(19);System.out.println(p2);
+        p2.setNumeroCella(15);System.out.println(p2);
 
         System.out.println(p.posizioneSuccessiva(p2));
 

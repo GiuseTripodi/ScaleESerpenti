@@ -38,6 +38,17 @@ public class ContextState {
         return false;
     }
 
+    /**
+     * Metodo usato nella rimozione di uno stato da un tabellone,
+     * è passato uno stato di defoult per assecurarsi che il componente
+     * aggiunto abbia tutte le informazioni aggiornate sul tabellone
+     * @param defoult
+     */
+    public void removeState(StateComponent defoult){
+        this.state = defoult;
+
+    }
+
     public void gestisciComponente(Giocatore giocatore){
 
         state.azione(giocatore);

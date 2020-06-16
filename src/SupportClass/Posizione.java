@@ -114,7 +114,7 @@ public class Posizione implements Cloneable{
     /**
      * Verifica se una posizione è successiva rispetto ad un altra, ovvero se viene dopo nel tabellone
      * @param p, prima posizione
-     * @return true se this è successivo rispetto a p2, se quindi viene dopo nel tabellone
+     * @return true se this è successivo rispetto a p, se quindi viene dopo nel tabellone
      */
     public boolean posizioneSuccessiva(Posizione p){
         return this.numeroCella >= p.numeroCella;

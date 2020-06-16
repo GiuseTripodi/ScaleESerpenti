@@ -8,23 +8,25 @@ import SupportClass.Posizione;
 public class TestTabellone {
 
     public static void main(String ... args){
-        int numeroRighe  = 9;
-        int numeroColonne = 10;
-        int numCelle = 19;
+        int numeroRighe  = 4;
+        int numeroColonne = 5;
+        int numCelle = 20;
 
         Posizione p = new Posizione();
         p.setInformazioniTabellone(numeroRighe,numeroColonne,numCelle);
-        ConcreteTabellone t = new ConcreteTabellone(numCelle,numeroRighe, numeroColonne);
+        ConcreteTabellone t = new ConcreteTabellone(numeroRighe, numeroColonne,numCelle);
         //aggiungo un po di componenti
-        p.setNumeroCella(4);
-        t.add(new Sosta(p, Sosta.TipoSosta.LOCANDA));
+        Posizione p1 = new Posizione(4,numeroRighe,numeroColonne,numCelle);
+        Sosta sosta = new Sosta(p1, Sosta.TipoSosta.LOCANDA);
+        t.add(sosta);
         p.setNumeroCella(2);
         t.add(new ScalaFine(p));
         p.setNumeroCella(7);
         t.add(new SerpenteInizio(p));
-
         t.stampa();
         System.out.println("------------------");
+        t.remove(sosta);
+        t.stampa();
 
 
 

@@ -50,6 +50,7 @@ public class PescaUnaCarta extends AbstractComponent {
         for(int i = 0; i< numeroCarteDivietoDiSosta ; i++){
             Float percentuale = r.nextFloat();
             if(percentuale <= 0.1){
+                System.out.println(numeroCarteMazzo);
                 int index = r.nextInt(numeroCarteMazzo);
                 mazzo.set(index, new DivietoDiSosta(posizioneFittizia));
             }

@@ -14,6 +14,15 @@ public interface Tabellone {
      */
     public boolean add(StateComponent component);
 
+    /**
+     * Il metodo serve a rimuovere un particolare componente dal tabellon,
+     * ripristina lo stato di default.
+     * Si usa nei casi in cui un aggiunta non va a buon fine e bisogna rimuovere
+     * il componente
+     * @param component
+     */
+    public void remove(StateComponent component);
+
 
     /**
      * Il metodo restituisce il componente associato ad una particolare posizione
