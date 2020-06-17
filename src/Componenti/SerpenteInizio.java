@@ -17,7 +17,7 @@ public class SerpenteInizio extends AbstractComponent{
     @Override
     public void stampa() {
         if(! this.getGiocatoriSuCella().isEmpty())
-            System.out.print(String.format("[ Se[%d]In ]", getGiocatoriSuCella().size()));
+            System.out.print(String.format("[ Se[%d]In ]", this.getGiocatoriSuCella().getFirst().getID()));
         else System.out.print("[  SerIn  ]");
     }
 

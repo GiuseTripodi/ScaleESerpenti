@@ -25,7 +25,7 @@ public class ScalaInizio extends AbstractComponent{
     @Override
     public void stampa() {
         if(! this.getGiocatoriSuCella().isEmpty())
-            System.out.print(String.format("[ Sc[%d]In ]", getGiocatoriSuCella().size()));
+            System.out.print(String.format("[ Sc[%d]In ]", this.getGiocatoriSuCella().getFirst().getID()));
         else System.out.print("[  ScaIn  ]");
     }
 

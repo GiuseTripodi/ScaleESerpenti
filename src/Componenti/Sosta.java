@@ -33,7 +33,7 @@ public class Sosta extends AbstractComponent {
     @Override
     public void stampa() {
         if(! this.getGiocatoriSuCella().isEmpty())
-            System.out.print(String.format("[ So[%d]ta ]", getGiocatoriSuCella().size()));
+            System.out.print(String.format("[ So[%d]ta ]", this.getGiocatoriSuCella().getFirst().getID()));
         else System.out.print("[  Sosta  ]");
     }
 

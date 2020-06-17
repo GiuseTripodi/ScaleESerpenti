@@ -18,7 +18,7 @@ public class ScalaFine extends AbstractComponent{
     @Override
     public void stampa() {
         if(! this.getGiocatoriSuCella().isEmpty())
-            System.out.print(String.format("[ Sc[%d]Fi ]", getGiocatoriSuCella().size()));
+            System.out.print(String.format("[ Sc[%d]Fi ]", this.getGiocatoriSuCella().getFirst().getID()));
         else System.out.print("[  ScaFi  ]");
     }
 

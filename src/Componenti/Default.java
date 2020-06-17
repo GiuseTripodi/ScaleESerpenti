@@ -17,7 +17,7 @@ public class Default extends AbstractComponent {
     @Override
     public void stampa() {
         if(! this.getGiocatoriSuCella().isEmpty())
-            System.out.print(String.format("[ Vu[%d]ta ]", this.getGiocatoriSuCella().size()));
+            System.out.print(String.format("[ Vu[%d]ta ]", this.getGiocatoriSuCella().getFirst().getID()));
         else
             System.out.print("[  Vuota  ]");
     }

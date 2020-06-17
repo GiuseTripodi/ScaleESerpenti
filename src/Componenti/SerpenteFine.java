@@ -20,7 +20,7 @@ public class SerpenteFine extends AbstractComponent {
     @Override
     public void stampa() {
         if(! this.getGiocatoriSuCella().isEmpty())
-            System.out.print(String.format("[ Se[%d]Fi ]", getGiocatoriSuCella().size()));
+            System.out.print(String.format("[ Se[%d]Fi ]", this.getGiocatoriSuCella().getFirst().getID()));
         else System.out.print("[  SerFi  ]");
     }
 

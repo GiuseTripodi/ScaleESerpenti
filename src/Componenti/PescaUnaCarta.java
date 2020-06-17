@@ -50,7 +50,6 @@ public class PescaUnaCarta extends AbstractComponent {
         for(int i = 0; i< numeroCarteDivietoDiSosta ; i++){
             Float percentuale = r.nextFloat();
             if(percentuale <= 0.1){
-                System.out.println(numeroCarteMazzo);
                 int index = r.nextInt(numeroCarteMazzo);
                 mazzo.set(index, new DivietoDiSosta(posizioneFittizia));
             }
@@ -62,7 +61,7 @@ public class PescaUnaCarta extends AbstractComponent {
     @Override
     public void stampa() {
         if(! this.getGiocatoriSuCella().isEmpty())
-            System.out.print(String.format("[ Pe[%d]Ca ]", this.getGiocatoriSuCella().size()));
+            System.out.print(String.format("[ Pe[%d]Ca ]", this.getGiocatoriSuCella().getFirst().getID()));
         else System.out.print("[  PesCa  ]");
     }
 

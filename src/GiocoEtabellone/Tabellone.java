@@ -40,4 +40,6 @@ public interface Tabellone {
 
     public int getNumColonne();
 
+    public void stampa();
+
 }

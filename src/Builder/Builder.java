@@ -3,6 +3,11 @@ package Builder;
 import GiocoEtabellone.Tabellone;
 import SupportClass.Posizione;
 
+/**
+ * L'interfaccia indica tutte le operazione di costruzion che può fare un builder
+ * per creare un tabellone, aggiungendo in base alle richieste tutte le
+ * varie estensioni.
+ */
 public interface Builder {
 
     /**

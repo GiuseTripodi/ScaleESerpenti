@@ -15,7 +15,7 @@ public class Premio  extends AbstractComponent{
     @Override
     public void stampa() {
         if(! this.getGiocatoriSuCella().isEmpty())
-            System.out.print(String.format("[ Pr[%d]mi ]", getGiocatoriSuCella().size()));
+            System.out.print(String.format("[ Pr[%d]mi ]", this.getGiocatoriSuCella().getFirst().getID()));
         else System.out.print("[  Premi  ]");
     }
 
