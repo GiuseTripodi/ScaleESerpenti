@@ -11,8 +11,8 @@ import java.util.Scanner;
 public class PartitaInterfacciaRigaDiComando extends AbstractPartita {
 
     //decidere se cancellare il costruttore, per dare l'accesso solo con i metodi che creano una partita standard o con parametri indicati dall'utente
-    public PartitaInterfacciaRigaDiComando(Tabellone tabellone, Gioco gioco, Builder builder, LinkedList<Giocatore> giocatori) {
-        super(tabellone, gioco, builder, giocatori);
+    public PartitaInterfacciaRigaDiComando(Tabellone tabellone, Gioco gioco,LinkedList<Giocatore> giocatori) {
+        super(tabellone, gioco, giocatori);
     }
 
     public PartitaInterfacciaRigaDiComando(){
@@ -83,102 +83,121 @@ public class PartitaInterfacciaRigaDiComando extends AbstractPartita {
      */
     @Override
     public void chiediInformazioniSuPartita() {
-        int numGiocatoriStandard;
-        int numDadiStandard;
-        int nR ;
-        int nC ;
-        int nCelle ;
-        int nScale ;
-        int nSoste;
-        int nSerpenti;
-        int nPremi ;
-        int nPesca ;
-        int nPescaUlteriori;
+        try {
+            Scanner scanner = new Scanner(System.in);
+            //chiedo le informazioni
+            System.out.println("*********************************");
+            System.out.println("*      Scale e Serpenti         *");
+            System.out.println("*********************************");
+            //chiedo le informazioni sul tabellone
+            System.out.println("------------------------------------------------");
+            System.out.println("-----Sceglio il tipo di gioco-----\n" +
+                    "Inserisci il numero corrispondente al gioco \n" +
+                    "1. Gioco Normale \n" +
+                    "2. Gioco con impostazione doppio sei \n" +
+                    "3. Gioco con un solo dado nelle mosse finali");
+            codiceDelTipoDiGioco = Integer.parseInt(scanner.nextLine().trim());
+            if(codiceDelTipoDiGioco <1 || codiceDelTipoDiGioco >3)throw new ValoreNonConsentitoException("Valore di gioco non consentito");
 
-        int numDadi = 2;
+            //faccio inserire il numero di dadi
+            if (codiceDelTipoDiGioco == 1) {
+                System.out.println("Inserisci il numero di dadi con cui giocare");
+                numDadi = Integer.parseInt(scanner.nextLine().trim());
+                if(numDadi < 1 || numDadi > 2)throw new ValoreNonConsentitoException("Valore di gioco non consentito");
+            }
+            System.out.println("------------------------------------------------");
+            System.out.println("----Inserisci le impostazioni del tabellone----");
 
-        int codiceDelTipoDiGioco;
+            System.out.println("Inserisci il numero di righe:");
+            nR = Integer.parseInt(scanner.nextLine().trim());
+            if(nR < 1 || nR > 100)throw new ValoreNonConsentitoException("Valore di gioco non consentito");
 
-        Scanner scanner = new Scanner(System.in);
-        //chiedo le informazioni
-        System.out.println("*********************************");
-        System.out.println("*      Scale e Serpenti         *");
-        System.out.println("*********************************");
-        //chiedo le informazioni sul tabellone
-        System.out.println("------------------------------------------------");
-        System.out.println("-----Sceglio il tipo di gioco-----\n" +
-                "Inserisci il numero corrispondente al gioco \n" +
-                "1. Gioco Normale \n" +
-                "2. Gioco con impostazione doppio sei \n" +
-                "3. Gioco con un solo dado nelle mosse finali");
-        codiceDelTipoDiGioco = Integer.parseInt(scanner.nextLine().trim());
-        //faccio inserire il numero di dadi
-        if(codiceDelTipoDiGioco == 1){
-            System.out.println("Inserisci il numero di dadi con cui giocare");
-            numDadi = Integer.parseInt(scanner.nextLine().trim());
+            System.out.println("Inserisci il numero di colonne:");
+            nC = Integer.parseInt(scanner.nextLine().trim());
+            if(nC < 1 || nC > 100)throw new ValoreNonConsentitoException("Valore di gioco non consentito");
+
+            //costruisco il numero di celle
+            nCelle = nC * nR;
+
+            System.out.println("Inserisci il numero di scale che vuoi inserire:");
+            nScale = Integer.parseInt(scanner.nextLine().trim());
+            if(nScale < 0 || nScale > nCelle)throw new ValoreNonConsentitoException("Valore di gioco non consentito");
+
+            System.out.println("Inserisci il numero di Serpenti che vuoi inserire:");
+            nSerpenti = Integer.parseInt(scanner.nextLine().trim());
+            if(nSerpenti < 1 || nSerpenti > nCelle)throw new ValoreNonConsentitoException("Valore di gioco non consentito");
+
+            System.out.println("Inserisci il numero di caselle di sosta che vuoi inserire:");
+            nSoste = Integer.parseInt(scanner.nextLine().trim());
+            if(nSoste < 1 || nSoste > nCelle)throw new ValoreNonConsentitoException("Valore di gioco non consentito");
+
+            System.out.println("Inserisci il numero di caselle con premi che vuoi inserire:");
+            nPremi = Integer.parseInt(scanner.nextLine().trim());
+            if(nPremi < 1 || nPremi > nCelle)throw new ValoreNonConsentitoException("Valore di gioco non consentito");
+
+            System.out.println("Inserisci il numero di caselle pesca una carta che vuoi inserire:");
+            nPesca = Integer.parseInt(scanner.nextLine().trim());
+            if(nPesca < 1 || nPesca > nCelle)throw new ValoreNonConsentitoException("Valore di gioco non consentito");
+
+            System.out.println("Inserisci il numero di caselle pesca una carta con ulteriori carte che vuoi inserire:");
+            nPescaUlteriori = Integer.parseInt(scanner.nextLine().trim());
+            if(nPescaUlteriori < 1 || nPescaUlteriori > nCelle)throw new ValoreNonConsentitoException("Valore di gioco non consentito");
+
+            System.out.println("------------------------------------------------");
+
+            System.out.println("Inserisci il numero di giocatori che possono partecipare la gioco");
+            numGiocatoriStandard = Integer.parseInt(scanner.nextLine().trim());
+            if(numGiocatoriStandard < 1 || numGiocatoriStandard > 10)throw new ValoreNonConsentitoException("Valore di gioco non consentito");
+
+            System.out.println("------------------------------------------------");
+
+            //costruisco il tabellone
+            Tabellone tabellone = costruisciTabelloneConParametri(nR,nC,nCelle,nScale,nSerpenti,nSoste,nPremi,nPesca,nPescaUlteriori);
+            //Costruisco il gioco
+            Gioco gioco = creaGiocoDaCodice(codiceDelTipoDiGioco);
+            //creo i Giocatori
+            LinkedList<Giocatore> giocatori = creaGiocatoriConParametri(numGiocatoriStandard,gioco);
+
+            //imposto le informazioni nella partita
+            setTabellone(tabellone);
+            setGioco(gioco);
+            setGiocatori(giocatori);
+
+        } catch (ValoreNonConsentitoException e) {
+            System.out.println("Qualche valore inserito non è corretto per configurare il sistema");
+            System.exit(1);
+
+
+        }catch (NumberFormatException e) {
+            System.out.println("Ha inserito qualche valore non corretto");
+            System.exit(1);
+
         }
-        System.out.println("------------------------------------------------");
-        System.out.println("----Inserisci le impostazioni del tabellone----");
-        System.out.println("Inserisci il numero di righe:");
-        nR = Integer.parseInt(scanner.nextLine().trim());
-        System.out.println("Inserisci il numero di colonne:");
-        nC = Integer.parseInt(scanner.nextLine().trim());
-        //costruisco il numero di celle
-        nCelle = nC * nR;
-        System.out.println("Inserisci il numero di scale che vuoi inserire:");
-        nScale = Integer.parseInt(scanner.nextLine().trim());
-        System.out.println("Inserisci il numero di Serpenti che vuoi inserire:");
-        nSerpenti = Integer.parseInt(scanner.nextLine().trim());
-        System.out.println("Inserisci il numero di caselle di sosta che vuoi inserire:");
-        nSoste = Integer.parseInt(scanner.nextLine().trim());
-        System.out.println("Inserisci il numero di caselle con premi che vuoi inserire:");
-        nPremi = Integer.parseInt(scanner.nextLine().trim());
-        System.out.println("Inserisci il numero di caselle pesca una carta che vuoi inserire:");
-        nPesca = Integer.parseInt(scanner.nextLine().trim());
-        System.out.println("Inserisci il numero di caselle pesca una carta con ulteriori carte che vuoi inserire:");
-        nPescaUlteriori = Integer.parseInt(scanner.nextLine().trim());
-        System.out.println("------------------------------------------------");
-        System.out.println("Inserisci il numero di giocatori che possono partecipare la gioco");
-        numGiocatoriStandard = Integer.parseInt(scanner.nextLine().trim());
-        System.out.println("------------------------------------------------");
 
-        //costruisco il tabellone
-        Tabellone tabellone = costruisciTabelloneConParametri(nR,nC,nCelle,nScale,nSerpenti,nSoste,nPremi,nPesca,nPescaUlteriori);
-        //Costruisco il gioco
-        Gioco gioco = null;
-        if(codiceDelTipoDiGioco == 1) { gioco = new GiocoNormale(tabellone,numDadi); }
-        if(codiceDelTipoDiGioco == 2) { gioco = new GiocoDoppioSei(tabellone); }
-        if(codiceDelTipoDiGioco == 3) { gioco = new GiocoUnSoloDadoFinale(tabellone); }
-        //creo i Giocatori
-        LinkedList<Giocatore> giocatori = creaGiocatoriConParametri(numGiocatoriStandard,gioco);
 
-        //imposto le informazioni nella partita
-        setTabellone(tabellone);
-        setGioco(gioco);
-        setGiocatori(giocatori);
-        
     }//chiedi informazioni su partita
 
     @Override
     public void costruisciPartitaStandard() {
         //informazioni standard
-        int numGiocatoriStandard = 4;
-        int numDadiStandard = 2;
-        int nR = 10;
-        int nC = 10;
-        int nCelle = 100;
-        int nScale = 5;
-        int nSoste = 5;
-        int nSerpenti = 5;
-        int nPremi = 5;
-        int nPesca = 5;
-        int nPescaUlteriori = 5;
+        this.numGiocatoriStandard = 4;
+        this.numDadi = 2;
+        this.nR = 10;
+        this.nC = 10;
+        this.nCelle = 100;
+        this.nScale = 5;
+        this.nSoste = 5;
+        this.nSerpenti = 5;
+        this.nPremi = 5;
+        this.nPesca = 5;
+        this.nPescaUlteriori = 5;
+        this.codiceDelTipoDiGioco = 1;
 
         //costruisco il tabellone
         Tabellone tabellone = costruisciTabelloneConParametri(nR,nC,nCelle,nScale,nSerpenti,nSoste,nPremi,nPesca,nPescaUlteriori);
 
         //costruisco un Gioco normale
-        Gioco gioco = new GiocoNormale(tabellone,numDadiStandard);
+        Gioco gioco = new GiocoNormale(tabellone,numDadi);
 
         //creo i Giocatori
         LinkedList<Giocatore> giocatori = creaGiocatoriConParametri(numGiocatoriStandard,gioco);

@@ -3,18 +3,19 @@ package Partite;
 import GiocoEtabellone.Tabellone;
 
 import java.io.File;
+import java.io.IOException;
 
 public interface Partita {
 
     /**
      * Il metodo fa partire una partita in modalità in maniera interattiva
      */
-    public void partitaInterattiva();
+    void partitaInterattiva();
 
     /**
      * IL metodo fa iniziare una partita in modalità simulata
      */
-    public void partitaSimulata();
+    void partitaSimulata();
 
     /**
      * Il metodo serve a chidere all'utente tutte le informazioni inerenti alla
@@ -22,7 +23,7 @@ public interface Partita {
      * e tipo di componenti da aggiungere. In base a queste informazionoi
      * crea tutta la "struttura"
      */
-    public void chiediInformazioniSuPartita();
+    void chiediInformazioniSuPartita();
 
 
     /**
@@ -30,20 +31,22 @@ public interface Partita {
      * di default(il tabellone). Quindi crea una configurazione del tabellone
      * con informazioni standard.
      */
-    public void costruisciPartitaStandard();
+    void costruisciPartitaStandard();
 
     /**
-     * Con questo metodo carichiamo l'impostazione della partita su file
+     * Con questo metodo carichiamo l'impostazione della partita su file. Carichiamo quindi tutte le informazioni
+     * relative alla partita che ne definiscono la configurazione.
+     * Al momento il file è caricato nella directory di progetto
      */
-    public boolean caricaSuFile();
+    boolean caricaSuFile(String nomeFile) throws IOException;
 
     /**
-     * Carica l'impostazione della partita da un file
-     * @return
+     * Carica l'impostazione della partita da un file, che si trova nella directory di progetto.
+     * @return true se il caricamento della configurazione da file va a buon fine
      */
-    public boolean caricaDaFile(File file);
+    boolean caricaDaFile(String nomeFile);
 
 
-    public Tabellone getTabellone();
+    Tabellone getTabellone();
 
 }
