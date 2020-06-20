@@ -3,6 +3,7 @@ package Partite;
 import GiocoEtabellone.Tabellone;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public interface Partita {
@@ -44,7 +45,7 @@ public interface Partita {
      * Carica l'impostazione della partita da un file, che si trova nella directory di progetto.
      * @return true se il caricamento della configurazione da file va a buon fine
      */
-    boolean caricaDaFile(String nomeFile);
+    boolean caricaDaFile(String nomeFile)throws FileNotFoundException;
 
 
     Tabellone getTabellone();

@@ -127,21 +127,6 @@ public class Posizione implements Cloneable{
      * @param esitoLancio
      * @return una nuova Posizione ottenuta dopo il lancio
      */
-
-    /*
-    public void posDopoLancio(int esitoLancio) {
-        int nCella = this.numeroCella += esitoLancio;
-
-        if (nCella > this.numeroCelleTabellone) {
-            this.numeroCella = this.numeroCelleTabellone - (nCella % this.numeroCelleTabellone);
-        }
-        this.setNumeroCella(nCella);
-
-    }
-
-     */
-
-
     public Posizione posDopoLancio(int esitoLancio) {
         Posizione ret = this.clone();
         int nCella = this.numeroCella + esitoLancio;

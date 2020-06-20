@@ -4,7 +4,7 @@ import Giocatore.Giocatore;
 import SupportClass.Posizione;
 
 public class Premio  extends AbstractComponent{
-    public enum TipoPremio {DADI, MOLLA}; //renderlo privato per il rilascio finale
+    public enum TipoPremio {DADI, MOLLA};
     private TipoPremio tipoPremio;
 
     public Premio(Posizione p, TipoPremio tipoPremio){

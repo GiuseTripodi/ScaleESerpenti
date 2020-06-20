@@ -36,7 +36,7 @@ public abstract class AbstractPartita implements Partita{
     }
 
     @Override
-    public boolean caricaDaFile(String nomeFile) {
+    public boolean caricaDaFile(String nomeFile) throws FileNotFoundException{
         try {
             StringTokenizer st;
             BufferedReader bf = new BufferedReader(new FileReader(nomeFile));
@@ -113,8 +113,7 @@ public abstract class AbstractPartita implements Partita{
 
 
         }catch (IOException e){
-            e.printStackTrace();
-            return false;
+            throw new FileNotFoundException();
         }
         catch (NumberFormatException e){
             System.out.println("Mi dispiace ma quelche valore inserito non è corretto");

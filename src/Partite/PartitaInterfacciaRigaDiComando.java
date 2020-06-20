@@ -10,10 +10,6 @@ import java.util.Scanner;
 
 public class PartitaInterfacciaRigaDiComando extends AbstractPartita {
 
-    //decidere se cancellare il costruttore, per dare l'accesso solo con i metodi che creano una partita standard o con parametri indicati dall'utente
-    public PartitaInterfacciaRigaDiComando(Tabellone tabellone, Gioco gioco,LinkedList<Giocatore> giocatori) {
-        super(tabellone, gioco, giocatori);
-    }
 
     public PartitaInterfacciaRigaDiComando(){
         super();
@@ -125,23 +121,23 @@ public class PartitaInterfacciaRigaDiComando extends AbstractPartita {
 
             System.out.println("Inserisci il numero di Serpenti che vuoi inserire:");
             nSerpenti = Integer.parseInt(scanner.nextLine().trim());
-            if(nSerpenti < 1 || nSerpenti > nCelle)throw new ValoreNonConsentitoException("Valore di gioco non consentito");
+            if(nSerpenti < 0 || nSerpenti > nCelle)throw new ValoreNonConsentitoException("Valore di gioco non consentito");
 
             System.out.println("Inserisci il numero di caselle di sosta che vuoi inserire:");
             nSoste = Integer.parseInt(scanner.nextLine().trim());
-            if(nSoste < 1 || nSoste > nCelle)throw new ValoreNonConsentitoException("Valore di gioco non consentito");
+            if(nSoste < 0 || nSoste > nCelle)throw new ValoreNonConsentitoException("Valore di gioco non consentito");
 
             System.out.println("Inserisci il numero di caselle con premi che vuoi inserire:");
             nPremi = Integer.parseInt(scanner.nextLine().trim());
-            if(nPremi < 1 || nPremi > nCelle)throw new ValoreNonConsentitoException("Valore di gioco non consentito");
+            if(nPremi < 0 || nPremi > nCelle)throw new ValoreNonConsentitoException("Valore di gioco non consentito");
 
             System.out.println("Inserisci il numero di caselle pesca una carta che vuoi inserire:");
             nPesca = Integer.parseInt(scanner.nextLine().trim());
-            if(nPesca < 1 || nPesca > nCelle)throw new ValoreNonConsentitoException("Valore di gioco non consentito");
+            if(nPesca < 0 || nPesca > nCelle)throw new ValoreNonConsentitoException("Valore di gioco non consentito");
 
             System.out.println("Inserisci il numero di caselle pesca una carta con ulteriori carte che vuoi inserire:");
             nPescaUlteriori = Integer.parseInt(scanner.nextLine().trim());
-            if(nPescaUlteriori < 1 || nPescaUlteriori > nCelle)throw new ValoreNonConsentitoException("Valore di gioco non consentito");
+            if(nPescaUlteriori < 0 || nPescaUlteriori > nCelle)throw new ValoreNonConsentitoException("Valore di gioco non consentito");
 
             System.out.println("------------------------------------------------");
 
@@ -153,15 +149,16 @@ public class PartitaInterfacciaRigaDiComando extends AbstractPartita {
 
             //costruisco il tabellone
             Tabellone tabellone = costruisciTabelloneConParametri(nR,nC,nCelle,nScale,nSerpenti,nSoste,nPremi,nPesca,nPescaUlteriori);
+            setTabellone(tabellone);
+
             //Costruisco il gioco
             Gioco gioco = creaGiocoDaCodice(codiceDelTipoDiGioco);
+            setGioco(gioco);
+
             //creo i Giocatori
             LinkedList<Giocatore> giocatori = creaGiocatoriConParametri(numGiocatoriStandard,gioco);
-
-            //imposto le informazioni nella partita
-            setTabellone(tabellone);
-            setGioco(gioco);
             setGiocatori(giocatori);
+
 
         } catch (ValoreNonConsentitoException e) {
             System.out.println("Qualche valore inserito non è corretto per configurare il sistema");

@@ -1,8 +1,10 @@
 package GiocoEtabellone;
 
-import Componenti.Premio;
+import Componenti.*;
 import Giocatore.Giocatore;
 import SupportClass.Posizione;
+import Componenti.Sosta.*;
+import Componenti.Premio.*;
 
 public  abstract class AbstractGioco implements Gioco {
     protected Tabellone tabellone;

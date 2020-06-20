@@ -5,7 +5,7 @@ import SupportClass.Posizione;
 
 public class Sosta extends AbstractComponent {
     //turni di stop panchina = 1; turni di stop locanda = 3
-    public enum TipoSosta {PANCHINA, LOCANDA}//renderlo privato per il rilascio finale
+    public enum TipoSosta {PANCHINA, LOCANDA}
     private TipoSosta tipoSosta;
     private int turniStop;
 
